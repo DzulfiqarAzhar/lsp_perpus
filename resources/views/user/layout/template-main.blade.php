@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<!--
+* CoreUI - Free Bootstrap Admin Template
+* @version v4.2.2
+* @link https://coreui.io
+* Copyright (c) 2022 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://coreui.io/license)
+-->
+<!-- Breadcrumb-->
 <html lang="en">
     <head>
         <base href="./" />
@@ -8,7 +16,7 @@
         <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template" />
         <meta name="author" content="Łukasz Holeczek" />
         <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard" />
-        <title>TeniNews Content Management</title>
+        <title>LSP_PERPUS</title>
         <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('storage/assets/favicon/apple-icon-57x57.png') }}" />
         <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('storage/assets/favicon/apple-icon-60x60.png') }}" />
         <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('storage/assets/favicon/apple-icon-72x72.png') }}" />
@@ -33,6 +41,8 @@
         <link href="{{ asset('storage/css/style.css') }}" rel="stylesheet" />
         <!-- We use those styles to show code examples, you should remove them in your application.-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
         <link href="{{ asset('storage/css/examples.css') }}" rel="stylesheet" />
         <!-- Global site tag (gtag.js) - Google Analytics-->
         <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
@@ -48,62 +58,40 @@
             // Bootstrap ID
             gtag("config", "UA-118965717-5");
         </script>
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+        <script>
+            tinymce.init({
+                selector: '#mytextarea'
+            });
+        </script>
+        <link href="{{ asset('storage/vendors/@coreui/chartjs/css/coreui-chartjs.css') }}" rel="stylesheet" />
     </head>
     <body>
-        <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="card-group d-block d-md-flex row">
-                            <div class="card col-md-7 p-4 mb-0">
-                                <div class="card-body">
-                                    <h1>Login</h1>
-                                    <p class="text-medium-emphasis">Sign In to your account</p>
-                                    <form method="POST" action="{{ route('login.process') }}">
-                                        @csrf
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">
-                                                <svg class="icon">
-                                                    <use xlink:href="{{ asset('storage/vendors/@coreui/icons/svg/free.svg#cil-user') }}"></use>
-                                                </svg>
-                                            </span>
-                                            <input class="form-control" type="text" name="username" placeholder="Username" />
-                                        </div>
-                                        <div class="input-group mb-4">
-                                            <span class="input-group-text">
-                                                <svg class="icon">
-                                                    <use xlink:href="{{ asset('storage/vendors/@coreui/icons/svg/free.svg#cil-lock-locked') }}"></use>
-                                                </svg>
-                                            </span>
-                                            <input class="form-control" type="password" name="password" placeholder="Password" />
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <button class="btn btn-primary px-4" type="submit">Login</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="card col-md-5 text-white bg-primary py-5">
-                                <div class="card-body text-center">
-                                    <div>
-                                        <h2>TeniNews</h2>
-                                        <p>
-                                            Welcome to TenieNews Content Management. The place where you can add or delete news for future release. <br />
-                                            Happy sharing!!
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        @include('user.layout.sidebar')
+        <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+            <section id="main">
+                @include('user.layout.header')
+                <div class="body flex-grow-1 px-3">
+                    <section id="content">
+                        @yield('content')
+                    </section>
                 </div>
-            </div>
+                @include('user.layout.footer')
+            </section>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js"></script>
         <!-- CoreUI and necessary plugins-->
         <script src="{{ asset('storage/vendors/@coreui/coreui/js/coreui.bundle.min.js') }}"></script>
         <script src="{{ asset('storage/vendors/simplebar/js/simplebar.min.js') }}"></script>
+        <!-- Plugins and scripts required by this view-->
+        <script src="{{ asset('storage/vendors/chart.js/js/chart.min.js') }}"></script>
+        <script src="{{ asset('storage/vendors/@coreui/chartjs/js/coreui-chartjs.js') }}"></script>
+        <script src="{{ asset('storage/vendors/@coreui/utils/js/coreui-utils.js') }}"></script>
+        <script src="{{ asset('storage/js/main.js') }}"></script>
         <script></script>
     </body>
 </html>

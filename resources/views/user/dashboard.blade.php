@@ -1,10 +1,7 @@
-@extends('layouts.app')
+@extends('user.layout.template-main')
 
 @section('content')
     <div class="row">
-        <div class="col-2">
-            @include('components.user.sidebar')
-        </div>
         <div class="col-10">
             <div class="">
                 @foreach ($pemberitahuans as $pemberitahuan)

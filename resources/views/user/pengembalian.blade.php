@@ -1,6 +1,5 @@
-@extends('layouts.app')
+@extends('user.layout.template-main')
 
 @section('content')
-    @include('components.user.sidebar')
 
 @endsection

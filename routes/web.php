@@ -35,11 +35,7 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::prefix('user')->group(function () {
-    Route::get('/dashboard', function () {
-        $pemberitahuans = Pemberitahuan::where('status', 'aktif')->get();
-        $bukus = Buku::all();
-        return view('user.dashboard', compact('pemberitahuans', 'bukus'));
-    })->name('user.dashboard');
+    Route::get('/dashboard', [User\DashboardController::class, 'index'])->name('user.dashboard')->middleware('auth');
 
     Route::get('/peminjaman', function () {
         $peminjamans = Peminjaman::where('user_id', Auth::user()->id)->get();
